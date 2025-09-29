@@ -84,12 +84,12 @@ type DarkVeilProps = {
 }
 
 export default function DarkVeil({
-  hueShift = 0,
+  hueShift = 271,
   noiseIntensity = 0,
-  scanlineIntensity = 0,
-  speed = 0.5,
-  scanlineFrequency = 0,
-  warpAmount = 0,
+  scanlineIntensity = 0.54,
+  speed = 3,
+  scanlineFrequency = 5,
+  warpAmount = 5,
   resolutionScale = 1,
 }: DarkVeilProps) {
   const ref = useRef<HTMLCanvasElement | null>(null)

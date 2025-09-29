@@ -1,0 +1,196 @@
+# Configuração Cursor IDE para ReactBits.dev
+
+## 1. Arquivo `.cursorrules` (Raiz do Projeto)
+
+Crie este arquivo na raiz do seu projeto:
+
+```
+# ReactBits.dev Pattern Rules for Cursor IDE
+
+## CORE PRINCIPLES
+- Always follow ReactBits.dev component structure and patterns exactly
+- Use the same prop naming conventions as shown in ReactBits documentation  
+- Maintain the same TypeScript interfaces and component signatures
+- Follow ReactBits animation patterns and timing values
+- Use identical CSS class structures and Tailwind patterns when shown
+- Preserve the exact component API design from ReactBits examples
+
+## COMPONENT STRUCTURE REQUIREMENTS
+
+### TypeScript Interface Patterns
+- Always define props interfaces following ReactBits naming: `ComponentNameProps`
+- Include all standard React props using intersection types: `& React.HTMLAttributes<HTMLDivElement>`
+- Use optional props with proper defaults as shown in ReactBits examples
+- Include animation-related props like: duration, delay, easing, trigger, etc.
+
+### Component Implementation Rules
+- Use React.forwardRef for components that need DOM access
+- Implement the same prop destructuring patterns as ReactBits
+- Use identical default values as shown in ReactBits documentation
+- Follow the exact same conditional rendering patterns
+- Maintain consistent className merging approaches
+
+### Animation Standards
+- Use the same CSS custom properties structure as ReactBits
+- Follow identical keyframe naming conventions
+- Implement the same easing functions and timing values
+- Use consistent trigger mechanisms (intersection observer, scroll, etc.)
+- Maintain the same performance optimization patterns
+
+## CODE STYLE REQUIREMENTS
+
+### Import Organization
+```typescript
+import React from 'react';
+import { cn } from '@/lib/utils'; // if using cn utility
+// Other imports...
+```
+
+### Component Signature Pattern
+```typescript
+export interface ComponentProps extends React.HTMLAttributes<HTMLDivElement> {
+  // ReactBits-specific props here
+  duration?: number;
+  delay?: number;
+  trigger?: boolean;
+  // ... other props as per ReactBits examples
+}
+
+export const Component = React.forwardRef<HTMLDivElement, ComponentProps>(
+  ({ className, duration = 1000, delay = 0, children, ...props }, ref) => {
+    // Implementation following ReactBits patterns
+    return (
+      <div
+        ref={ref}
+        className={cn("your-classes", className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+
+Component.displayName = "Component";
+```
+
+### CSS/Tailwind Patterns
+- Use the exact same CSS custom properties as ReactBits
+- Follow identical Tailwind class organization
+- Implement the same responsive patterns
+- Use consistent spacing and sizing values
+
+## SPECIFIC REACTBITS PATTERNS TO FOLLOW
+
+### Animation Props Structure
+- `duration`: number (default values as per ReactBits)
+- `delay`: number (default 0)
+- `easing`: string (use ReactBits easing values)
+- `trigger`: boolean or IntersectionObserver patterns
+- `repeat`: boolean or number for loop animations
+- `direction`: 'normal' | 'reverse' | 'alternate' | 'alternate-reverse'
+
+### Common Prop Patterns
+- Always include `className` for custom styling
+- Use `children` for content components  
+- Include `style` prop for inline styles when needed
+- Implement `onAnimationEnd`, `onAnimationStart` callbacks when relevant
+
+### Performance Patterns
+- Use `will-change` CSS property appropriately
+- Implement proper cleanup in useEffect hooks
+- Use React.memo when beneficial (as shown in ReactBits)
+- Follow ReactBits lazy loading patterns for heavy animations
+
+## FILE STRUCTURE
+```
+components/
+├── ui/
+│   ├── component-name.tsx
+│   └── index.ts
+└── examples/
+    └── component-examples.tsx
+```
+
+## DOCUMENTATION REQUIREMENTS
+- Include JSDoc comments following ReactBits style
+- Document all props with descriptions and default values
+- Include usage examples in comments
+- Add performance notes where relevant
+
+## TESTING PATTERNS
+- Test all animation states
+- Verify prop combinations work as expected
+- Check accessibility requirements
+- Test performance with multiple instances
+
+## WHEN IMPLEMENTING REACTBITS COMPONENTS:
+1. Always check the ReactBits.dev documentation first
+2. Copy the EXACT prop interface structure
+3. Maintain identical default values
+4. Use the same animation timing and easing
+5. Follow the same CSS class patterns
+6. Preserve the component API exactly as shown
+7. Include all optional configurations available
+8. Test against ReactBits examples for consistency
+
+## ERROR PREVENTION
+- Never deviate from ReactBits prop naming
+- Don't change default timing values unless explicitly needed
+- Maintain backward compatibility with ReactBits API
+- Always test animations across different screen sizes
+- Verify accessibility features are preserved
+
+Remember: The goal is 100% consistency with ReactBits.dev examples and documentation.
+```
+
+## 2. Configuração do TypeScript (tsconfig.json)
+
+Adicione/ajuste essas configurações:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"]
+    }
+  }
+}
+```
+
+## 3. Configuração do ESLint (.eslintrc.json)
+
+```json
+{
+  "extends": [
+    "next/core-web-vitals",
+    "@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "react/display-name": "error",
+    "react-hooks/exhaustive-deps": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "prefer-const": "error"
+  }
+}
+```
+
+## 4. Configuração do Prettier (.prettierrc)
+
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": false,
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 80,
+  "bracketSpacing": true,
+  "arrowParens": "avoid"
+}
+```
